@@ -1,8 +1,8 @@
-# AI Conversational Insights Generator 🤖💬
+# AI Conversational Insights Generator
 
 A sophisticated AI-powered API system that analyzes call transcripts to extract customer insights, sentiment analysis, and actionable intelligence. Built specifically for financial services and debt collection scenarios with support for Hinglish (Hindi-English mixed) conversations.
 
-## 🌟 Features
+## Features
 
 - **Multi-language Support**: Handles English, Hindi, and Hinglish transcripts
 - **Real-time Analysis**: FastAPI-powered REST API for instant insights
@@ -11,15 +11,15 @@ A sophisticated AI-powered API system that analyzes call transcripts to extract 
 - **Comprehensive Testing**: 10-scenario validation pipeline
 - **Production Ready**: Async/await architecture with proper error handling
 
-## 🎯 Key Capabilities
+## Key Capabilities
 
-### 📊 Insight Extraction
+### Insight Extraction
 - **Customer Intent Recognition**: Identifies purpose and motivation behind calls
 - **Sentiment Analysis**: Classifies emotions as Positive, Neutral, or Negative  
 - **Action Required Detection**: Determines if follow-up actions are needed
 - **Call Summarization**: Generates concise summaries of conversations
 
-### 🏦 Financial Services Focus
+### Financial Services Focus
 - Pre-due payment reminders
 - Overdue payment follow-ups
 - Promise to Pay (PTP) scenarios
@@ -27,7 +27,7 @@ A sophisticated AI-powered API system that analyzes call transcripts to extract 
 - Settlement negotiations
 - Legal notice discussions
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -60,7 +60,7 @@ The API will be available at `http://127.0.0.1:8000`
 ### 4. API Documentation
 Visit `http://127.0.0.1:8000/docs` for interactive Swagger documentation.
 
-## 📡 API Usage
+## API Usage
 
 ### Analyze Call Transcript
 ```bash
@@ -82,7 +82,7 @@ curl -X POST http://127.0.0.1:8000/analyze_call \
 }
 ```
 
-## 🧪 Testing & Validation
+## Testing & Validation
 
 The project includes a comprehensive testing pipeline with 10 real-world scenarios:
 
@@ -98,7 +98,7 @@ python test_pipeline.py
 
 ### Sample Test Results
 ```
-📈 PIPELINE VALIDATION REPORT
+PIPELINE VALIDATION REPORT
 ========================================
 Total Tests: 10
 Successful: 10
@@ -111,7 +111,7 @@ Sentiment Analysis: 95.0%
 Action Detection: 85.0%
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Components
 ```
@@ -129,7 +129,7 @@ Action Detection: 85.0%
 4. **Storage**: Record insertion into PostgreSQL
 5. **Response**: JSON with insights and database record ID
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ai-conversation-insights/
@@ -142,7 +142,7 @@ ai-conversation-insights/
 └── venv/                  # Virtual environment
 ```
 
-## 🛠️ Dependencies
+## Dependencies
 
 ```txt
 fastapi                    # Web framework
@@ -153,7 +153,7 @@ google-genai              # Google Gemini AI SDK
 python-dotenv             # Environment management
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 | Variable | Description | Example |
@@ -173,7 +173,7 @@ CREATE TABLE call_records (
 );
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Adding New Intent Types
 Modify the prompt in `generate_insights()` function to include new business scenarios.
@@ -184,7 +184,7 @@ Update the `CallInsight` model to add custom sentiment classifications.
 ### Multi-language Support
 Enhance prompts with language-specific instructions for better accuracy.
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 Based on validation testing:
 - **Response Time**: < 3 seconds per transcript
@@ -193,7 +193,7 @@ Based on validation testing:
 - **Action Detection**: 85%+
 - **Uptime**: 99.9% (async architecture)
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -213,7 +213,7 @@ curl http://127.0.0.1:8000/docs
 - Check API quota limits
 - Verify internet connectivity
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -221,11 +221,11 @@ curl http://127.0.0.1:8000/docs
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Google Gemini AI for natural language processing
 - FastAPI team for the excellent web framework
@@ -233,6 +233,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ for AI-powered conversational insights**
+**Built for AI-powered conversational insights**
 
 For questions or support, please open an issue in the repository.
