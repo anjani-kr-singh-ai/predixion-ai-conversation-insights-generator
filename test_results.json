@@ -1,0 +1,291 @@
+{
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 10,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "intent_accuracy": 80.0,
+    "sentiment_accuracy": 100.0,
+    "action_accuracy": 70.0
+  },
+  "stage_analysis": {
+    "Pre-Due": {
+      "total": 2,
+      "successful": 2
+    },
+    "Post-Due (D+7)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Post-Due (D+15)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Post-Due (D+25)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Recovery (D+60)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Recovery (D+90)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Recovery (D+120)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Recovery (D+60, Dispute)": {
+      "total": 1,
+      "successful": 1
+    },
+    "Recovery (D+75, Hardship)": {
+      "total": 1,
+      "successful": 1
+    }
+  },
+  "details": [
+    {
+      "test_id": 1,
+      "stage": "Pre-Due",
+      "evaluation": {
+        "intent_match": false,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "Confirm intention to pay upcoming loan EMI",
+        "actual_sentiment": "Positive",
+        "actual_action": false,
+        "expected_intent": "Payment Reminder Response",
+        "expected_sentiment": "Positive",
+        "expected_action": false
+      },
+      "raw_result": {
+        "record_id": 2,
+        "insights": {
+          "customer_intent": "Confirm intention to pay upcoming loan EMI",
+          "sentiment": "Positive",
+          "action_required": false,
+          "summary": "The agent called Mr. Sharma to remind him about his personal loan EMI due on the 3rd of next month. Mr. Sharma confirmed that he would pay the EMI on time once his salary arrives."
+        }
+      }
+    },
+    {
+      "test_id": 2,
+      "stage": "Pre-Due",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": false,
+        "actual_intent": "Acknowledge payment reminder and confirm minimum payment",
+        "actual_sentiment": "Neutral",
+        "actual_action": false,
+        "expected_intent": "Partial Payment Commitment",
+        "expected_sentiment": "Neutral",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 3,
+        "insights": {
+          "customer_intent": "Acknowledge payment reminder and confirm minimum payment",
+          "sentiment": "Neutral",
+          "action_required": false,
+          "summary": "The agent informed the customer about a minimum due of ₹8,500 by the 10th. The customer confirmed they would pay the minimum amount by the 8th."
+        }
+      }
+    },
+    {
+      "test_id": 3,
+      "stage": "Post-Due (D+7)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": false,
+        "actual_intent": "To commit to a payment for an overdue personal loan EMI",
+        "actual_sentiment": "Neutral",
+        "actual_action": false,
+        "expected_intent": "Promise to Pay (PTP)",
+        "expected_sentiment": "Neutral",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 4,
+        "insights": {
+          "customer_intent": "To commit to a payment for an overdue personal loan EMI",
+          "sentiment": "Neutral",
+          "action_required": false,
+          "summary": "The agent called the customer about an overdue personal loan EMI. The customer explained an emergency and committed to making the payment next Wednesday. The agent booked a Promise to Pay (PTP) for the specified date."
+        }
+      }
+    },
+    {
+      "test_id": 4,
+      "stage": "Post-Due (D+15)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": false,
+        "actual_intent": "Address pending credit card payment and late fees",
+        "actual_sentiment": "Neutral",
+        "actual_action": false,
+        "expected_intent": "Payment Delay Request",
+        "expected_sentiment": "Neutral",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 5,
+        "insights": {
+          "customer_intent": "Address pending credit card payment and late fees",
+          "sentiment": "Neutral",
+          "action_required": false,
+          "summary": "The agent informed the customer about an overdue credit card minimum payment and applied late fees. The customer acknowledged forgetting and committed to making the payment on Sunday."
+        }
+      }
+    },
+    {
+      "test_id": 5,
+      "stage": "Post-Due (D+25)",
+      "evaluation": {
+        "intent_match": false,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "To acknowledge the overdue loan payment and commit to making the payment to prevent the account from becoming NPA.",
+        "actual_sentiment": "Negative",
+        "actual_action": true,
+        "expected_intent": "Technical Issue & Commitment",
+        "expected_sentiment": "Negative",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 6,
+        "insights": {
+          "customer_intent": "To acknowledge the overdue loan payment and commit to making the payment to prevent the account from becoming NPA.",
+          "sentiment": "Negative",
+          "action_required": true,
+          "summary": "The agent informed the customer about their loan account being at risk of becoming NPA due to 25 days overdue. The customer initially gave excuses but ultimately agreed to attempt payment within the next 3 hours. The agent will call back for confirmation."
+        }
+      }
+    },
+    {
+      "test_id": 6,
+      "stage": "Recovery (D+60)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "To negotiate loan repayment terms and prevent a physical visit due to financial hardship.",
+        "actual_sentiment": "Negative",
+        "actual_action": true,
+        "expected_intent": "Financial Hardship & Token Payment",
+        "expected_sentiment": "Negative",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 7,
+        "insights": {
+          "customer_intent": "To negotiate loan repayment terms and prevent a physical visit due to financial hardship.",
+          "sentiment": "Negative",
+          "action_required": true,
+          "summary": "The customer, whose loan is 60 days in default, requested to postpone a planned visit due to job loss and offered a partial payment of ₹10,000 immediately, with the remaining balance next month. The agent accepted the ₹10,000 token payment and agreed to place the file on temporary hold."
+        }
+      }
+    },
+    {
+      "test_id": 7,
+      "stage": "Recovery (D+90)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "To understand settlement options for an overdue account as they cannot pay the full amount and to receive settlement details via email.",
+        "actual_sentiment": "Negative",
+        "actual_action": true,
+        "expected_intent": "Settlement Request",
+        "expected_sentiment": "Negative",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 8,
+        "insights": {
+          "customer_intent": "To understand settlement options for an overdue account as they cannot pay the full amount and to receive settlement details via email.",
+          "sentiment": "Negative",
+          "action_required": true,
+          "summary": "The agent informed the customer that their account is overdue by 90 days, totaling ₹1.5 lakh, and is nearing write-off. The customer stated inability to pay the full amount and requested a settlement option. The agent mentioned a minimum 30% upfront payment for settlement and asked about eligibility. The customer requested the details to be mailed. The agent issued a final warning about potential legal action if no action is taken."
+        }
+      }
+    },
+    {
+      "test_id": 8,
+      "stage": "Recovery (D+120)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "The customer is disputing the existence of a charge on their personal loan/property, rejects the payment demand, and intends to seek legal advice.",
+        "actual_sentiment": "Negative",
+        "actual_action": true,
+        "expected_intent": "Legal Threat Dispute",
+        "expected_sentiment": "Negative",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 9,
+        "insights": {
+          "customer_intent": "The customer is disputing the existence of a charge on their personal loan/property, rejects the payment demand, and intends to seek legal advice.",
+          "sentiment": "Negative",
+          "action_required": true,
+          "summary": "The agent called the customer to inform them that their case has been assigned to an external agency due to a charge on their property, demanding ₹25,000 for account regularization. The customer vehemently denied any charge on their personal loan, accused the agent of threatening them, and stated their intention to consult a lawyer."
+        }
+      }
+    },
+    {
+      "test_id": 9,
+      "stage": "Recovery (D+60, Dispute)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "Customer is refusing to pay an outstanding amount due to an unresolved fraudulent transaction, demanding resolution of the fraud first.",
+        "actual_sentiment": "Negative",
+        "actual_action": true,
+        "expected_intent": "Fraud Dispute Claim",
+        "expected_sentiment": "Negative",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 10,
+        "insights": {
+          "customer_intent": "Customer is refusing to pay an outstanding amount due to an unresolved fraudulent transaction, demanding resolution of the fraud first.",
+          "sentiment": "Negative",
+          "action_required": true,
+          "summary": "The agent called about a 60-day overdue payment. The customer refused to pay, stating there was a fraudulent transaction that needed to be resolved first. The agent explained that the dispute department is separate and the undisputed amount is due, but the customer insisted on dispute resolution first."
+        }
+      }
+    },
+    {
+      "test_id": 10,
+      "stage": "Recovery (D+75, Hardship)",
+      "evaluation": {
+        "intent_match": true,
+        "sentiment_match": true,
+        "action_match": true,
+        "actual_intent": "Request for loan restructuring due to financial hardship.",
+        "actual_sentiment": "Neutral",
+        "actual_action": true,
+        "expected_intent": "Hardship & Restructuring Request",
+        "expected_sentiment": "Neutral",
+        "expected_action": true
+      },
+      "raw_result": {
+        "record_id": 11,
+        "insights": {
+          "customer_intent": "Request for loan restructuring due to financial hardship.",
+          "sentiment": "Neutral",
+          "action_required": true,
+          "summary": "The customer, facing serious financial hardship due to her mother's hospitalization, requested a loan restructuring. The agent informed her about the requirement to fill a hardship application and submit the last 3 months' bank statements. The customer agreed and asked for the form to be sent."
+        }
+      }
+    }
+  ]
+}
