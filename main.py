@@ -33,7 +33,16 @@ if not GEMINI_KEY:
 # Pydantic Model
 class CallInsight(BaseModel):
     customer_intent: str
-    sentiment: Literal['Negative', 'Neutral', 'Positive']
+    call_purpose: str
+    call_objective_met: bool
+    key_results: str
+    customer_statements_analysis: str
+    non_payment_reasons: str
+    sentiment_start: Literal['Negative', 'Neutral', 'Positive']
+    sentiment_end: Literal['Negative', 'Neutral', 'Positive']
+    overall_sentiment: Literal['Negative', 'Neutral', 'Positive']
+    agent_performance_rating: int  # 1-10 scale
+    agent_performance_feedback: str
     action_required: bool
     summary: str
 
@@ -50,10 +59,20 @@ async def generate_insights(transcript: str) -> CallInsight:
     try:
         prompt = f"""
         Analyze the following call transcript and return ONLY a valid JSON object with these exact fields:
+        
         - customer_intent: string (the main intent/purpose of the customer's call)
-        - sentiment: string (must be exactly one of: "Negative", "Neutral", "Positive")
+        - call_purpose: string (determine the primary purpose of this call - e.g., payment reminder, collection, dispute resolution)
+        - call_objective_met: boolean (assess whether the call objective was achieved)
+        - key_results: string (identify key outcomes like promises to pay, dispute resolutions, settlement agreements)
+        - customer_statements_analysis: string (analyze customer statements for intentions and circumstances)
+        - non_payment_reasons: string (identify reasons for non-payment, financial hardships, job loss, etc.)
+        - sentiment_start: string (customer sentiment at the beginning - "Negative", "Neutral", or "Positive")
+        - sentiment_end: string (customer sentiment at the end - "Negative", "Neutral", or "Positive")
+        - overall_sentiment: string (overall call sentiment - "Negative", "Neutral", or "Positive")
+        - agent_performance_rating: number (rate agent performance 1-10, where 10 is excellent)
+        - agent_performance_feedback: string (feedback on agent's conversation quality, professionalism, problem resolution)
         - action_required: boolean (true if follow-up action is needed)
-        - summary: string (brief summary of the call)
+        - summary: string (comprehensive summary of the call)
 
         Transcript: {transcript}
 
@@ -102,9 +121,19 @@ async def startup():
             id SERIAL PRIMARY KEY,
             transcript TEXT NOT NULL,
             intent TEXT NOT NULL,
-            sentiment TEXT NOT NULL,
+            call_purpose TEXT NOT NULL,
+            call_objective_met BOOLEAN NOT NULL,
+            key_results TEXT NOT NULL,
+            customer_statements_analysis TEXT NOT NULL,
+            non_payment_reasons TEXT NOT NULL,
+            sentiment_start TEXT NOT NULL,
+            sentiment_end TEXT NOT NULL,
+            overall_sentiment TEXT NOT NULL,
+            agent_performance_rating INTEGER NOT NULL,
+            agent_performance_feedback TEXT NOT NULL,
             action_required BOOLEAN NOT NULL,
-            summary TEXT NOT NULL
+            summary TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
 
@@ -120,10 +149,16 @@ async def analyze_call(req: TranscriptRequest):
     insight = await generate_insights(req.transcript)
 
     result = await db.fetchrow("""
-        INSERT INTO call_records (transcript, intent, sentiment, action_required, summary)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO call_records (transcript, intent, call_purpose, call_objective_met, key_results, 
+                                customer_statements_analysis, non_payment_reasons, sentiment_start, 
+                                sentiment_end, overall_sentiment, agent_performance_rating, 
+                                agent_performance_feedback, action_required, summary)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
         RETURNING id
-    """, req.transcript, insight.customer_intent, insight.sentiment,
+    """, req.transcript, insight.customer_intent, insight.call_purpose, insight.call_objective_met,
+       insight.key_results, insight.customer_statements_analysis, insight.non_payment_reasons,
+       insight.sentiment_start, insight.sentiment_end, insight.overall_sentiment, 
+       insight.agent_performance_rating, insight.agent_performance_feedback, 
        insight.action_required, insight.summary)
 
     return {
